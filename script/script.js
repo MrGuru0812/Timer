@@ -253,7 +253,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const calcItem = document.querySelectorAll('.calc-item');
         calcItem.forEach(item => {
             item.addEventListener('input', e => {
-                e.target.value = item.value.replace(/\D/g, '');
+                e.target.value = item.value.match(/^[0-9]*\.?[0-9]*$/, '');
             });
         });
     };
