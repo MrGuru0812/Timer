@@ -1,4 +1,4 @@
-
+maskPhone('input[type=tel]');
 window.addEventListener('DOMContentLoaded', () => {
 
     //Timer
@@ -278,7 +278,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
 
-            totalValue.textContent = total;
+            totalValue.textContent = Math.floor(total);
 
         };
 
@@ -291,7 +291,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         calcItem.forEach(item => {
             item.addEventListener('input', e => {
-                e.target.value = item.value.match(/^[0-9]*\.?[0-9]*$/, '');
+                e.target.value = item.value.match(/^(0|[1-9]\d*)([.]\d+)?/g, '');
             });
         });
     };
@@ -310,5 +310,69 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     };
     dreamTeam();
+    //send-ajax-form
+    const sendForm = () => {
+        const errorMessage = 'Что то пошло не так...',
+            loadMessage = 'Загрузка...',
+            successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
+        const form = document.querySelectorAll('form');
+        form.forEach(item => {
+            const input = document.querySelectorAll('input');
+            input.forEach(item => {
+                item.addEventListener('input', e => {
+                    if (item.name === 'user_name' || item.name === 'user_message') {
+                        e.target.value = item.value.replace(/([^а-яА-Я ]\D*)([.]\D+)?/g, '');
+                    }
+                });
+            });
+
+            const statusMessage = document.createElement('div');
+
+            statusMessage.style.cssText = 'font-size: 2rem;';
+
+            item.addEventListener('submit', event => { // по нажатию на кнопку отправить
+                event.preventDefault();
+                item.appendChild(statusMessage);
+                statusMessage.textContent = loadMessage;
+                const formData = new FormData(item);
+                const body = {};
+                formData.forEach((val, key) => {
+                    body[key] = val;
+                });
+                postData(body, () => {
+                    statusMessage.textContent = successMessage;
+                }, error => {
+                    statusMessage.textContent = errorMessage;
+                    console.error(error);
+                });
+
+            });
+
+            const postData = (body, outputData, errorData) => {
+                const request = new XMLHttpRequest();
+                request.addEventListener('readystatechange', () => {
+                    if (request.readyState !== 4) {
+                        return;
+                    }
+                    if (request.status === 200) {
+                        const input = item.querySelectorAll('input');
+                        input.forEach(item => {
+                            item.value = '';
+                        });
+                        outputData();
+                    } else {
+                        errorData(request.status);
+                    }
+                });
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
+
+                request.send(JSON.stringify(body));
+            };
+
+        });
+
+    };
+    sendForm();
 });
 
