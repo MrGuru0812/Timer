@@ -278,7 +278,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
 
-            totalValue.textContent = total;
+            totalValue.textContent = Math.floor(total);
 
         };
 
@@ -291,7 +291,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         calcItem.forEach(item => {
             item.addEventListener('input', e => {
-                e.target.value = item.value.match(/^[0-9]*\.?[0-9]*$/, '');
+                e.target.value = item.value.match(/^(0|[1-9]\d*)([.]\d+)?/g, '');
             });
         });
     };
