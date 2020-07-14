@@ -328,7 +328,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const statusMessage = document.createElement('div');
 
-            statusMessage.style.cssText = 'font-size: 2rem;';
+            statusMessage.style.cssText = `font-size: 2rem;
+                                            color: white;`;
 
             item.addEventListener('submit', event => { // по нажатию на кнопку отправить
                 event.preventDefault();
