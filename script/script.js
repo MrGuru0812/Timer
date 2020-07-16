@@ -329,7 +329,8 @@ window.addEventListener('DOMContentLoaded', () => {
                         input.forEach(item => {
                             item.value = '';
                         });
-                        resolve();
+                        const response = JSON.parse(request.response);
+                        resolve(response);
                     } else {
                         reject(request.status);
                     }
@@ -370,7 +371,6 @@ window.addEventListener('DOMContentLoaded', () => {
                         statusMessage.textContent = errorMessage;
                         console.error(error);
                     });
-
             });
 
         });
