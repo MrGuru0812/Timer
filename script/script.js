@@ -329,10 +329,9 @@ window.addEventListener('DOMContentLoaded', () => {
                         input.forEach(item => {
                             item.value = '';
                         });
-                        const response = JSON.parse(request.response);
-                        resolve(response);
+                        resolve();
                     } else {
-                        reject(request.status);
+                        reject(request.statusText);
                     }
                 });
                 request.open('POST', './server.php');
