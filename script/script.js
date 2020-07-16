@@ -338,7 +338,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 request.setRequestHeader('Content-Type', 'application/json');
 
                 request.send(JSON.stringify(body));
-
             });
             const input = document.querySelectorAll('input');
             input.forEach(item => {
