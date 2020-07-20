@@ -17,7 +17,6 @@ function countTimer(deadLine) {
             seconds,
         };
     }
-    console.log(getTimeRemaining());
     const updateClock = setInterval(() => {
         const timer = getTimeRemaining(),
             idTimer = document.getElementById('timer');

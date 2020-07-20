@@ -1,10 +1,9 @@
-import "mdn-polyfills/Node.prototype.append";
 import "formdata-polyfill";
-import "@babel/polyfill";
 import "es6-promise";
 import 'nodelist-foreach-polyfill';
 import elementClosest from 'element-closest';
 elementClosest(window);
+import "@babel/polyfill";
 import countTimer from './modules/countTimer';
 import toggleMenu from './modules/toggleMenu';
 import togglePopUp from './modules/togglePopUp';
