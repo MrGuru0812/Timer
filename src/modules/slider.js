@@ -17,8 +17,9 @@ const slider = () => {
             createDot();
         }
     }
-    const dot = dots.querySelectorAll('.dot');
 
+    const dot = dots.querySelectorAll('.dot');
+    dot[0].classList.add('dot-active');
 
     const prevSlide = (elem, index, strClass) => {
         elem[index].classList.remove(strClass);
@@ -69,6 +70,7 @@ const slider = () => {
         }
         if (currentSlide >= slide.length) {
             currentSlide = 0;
+
         }
 
         if (currentSlide < 0) {
