@@ -15,7 +15,7 @@ import dreamTeam from './modules/dreamTeam';
 import sendForm from './modules/sendForm';
 
 //Timer
-countTimer();
+countTimer('21 july 2020');
 
 //Menu
 toggleMenu();
