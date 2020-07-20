@@ -1,4 +1,6 @@
 maskPhone('input[type=tel]');
+
+//maskPhone('input[type=tel]');
 const sendForm = () => {
 
     const errorMessage = 'Что то пошло не так...',
@@ -16,7 +18,6 @@ const sendForm = () => {
         const input = document.querySelectorAll('input');
 
         input.forEach(item => {
-            console.log(item);
             item.addEventListener('input', e => {
                 if (item.name === 'user_name' || item.name === 'user_message') {
                     e.target.value = item.value.replace(/([^а-яА-Я ]\D*)([.]\D+)?/g, '');

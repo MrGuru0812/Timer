@@ -2,14 +2,13 @@ function countTimer(deadLine) {
     const timerHours = document.querySelector('#timer-hours'),
         timerMinutes = document.querySelector('#timer-minutes'),
         timerSeconds = document.querySelector('#timer-seconds');
-
     function getTimeRemaining() {
         const dateStop = new Date(deadLine).getTime(),
             dateNow = new Date().getTime(),
             timeRemaining = (dateStop - dateNow) / 1000,
-            seconds = Math.floor(timeRemaining % 60),
-            minutes = Math.floor((timeRemaining / 60) % 60),
-            hours = Math.floor(timeRemaining / 60 / 60);
+            seconds = Math.round(timeRemaining % 60),
+            minutes = Math.round((timeRemaining / 60) % 60),
+            hours = Math.round(timeRemaining / 60 / 60);
 
         return {
             timeRemaining,
@@ -18,7 +17,7 @@ function countTimer(deadLine) {
             seconds,
         };
     }
-
+    console.log(getTimeRemaining());
     const updateClock = setInterval(() => {
         const timer = getTimeRemaining(),
             idTimer = document.getElementById('timer');
@@ -35,7 +34,6 @@ function countTimer(deadLine) {
             setTimeout(updateClock, 1000);
         } else if (timer.timeRemaining <= 0) {
             clearInterval(updateClock);
-
             idTimer.style.color = 'red';
 
             timerHours.textContent = '00';

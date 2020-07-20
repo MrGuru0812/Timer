@@ -1,8 +1,7 @@
-
-import "fetch-polyfill";
-import "es6-promise";
+import "mdn-polyfills/Node.prototype.append";
 import "formdata-polyfill";
 import "@babel/polyfill";
+import "es6-promise";
 import 'nodelist-foreach-polyfill';
 import elementClosest from 'element-closest';
 elementClosest(window);
@@ -16,7 +15,7 @@ import dreamTeam from './modules/dreamTeam';
 import sendForm from './modules/sendForm';
 
 //Timer
-countTimer('20 julay 2020');
+countTimer();
 
 //Menu
 toggleMenu();
